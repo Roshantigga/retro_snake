@@ -1,4 +1,4 @@
-
+//20:57
 #include <iostream>
 #include <raylib.h>
 
@@ -31,6 +31,8 @@ class Food {
     {
         DrawTexture(texture, position.x * cellSize, position.y * cellSize, WHITE);
     }
+
+
 };
 
 int main() 
