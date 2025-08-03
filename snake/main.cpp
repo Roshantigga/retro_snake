@@ -128,6 +128,22 @@ class Game
     Food food = Food(snake.body);
     bool running = true;
     int score = 0;
+    Sound eatSound;
+    Sound wallSound;
+
+    Game()
+    {
+        InitAudioDevice();
+        eatSound = LoadSound("Sounds/eat.mp3");
+        wallSound = LoadSound("Sounds/wall.mp3");
+    }
+
+    ~Game()
+    {
+        UnloadSound(eatSound);
+        UnloadSound(wallSound);
+        CloseAudioDevice();
+    }
 
     void Draw()
     {
@@ -153,6 +169,7 @@ class Game
             food.position = food.GenerateRandomPos(snake.body);
             snake.addSegment = true;
             score ++;
+            PlaySound(eatSound);
         }
     }
 
@@ -175,6 +192,7 @@ class Game
         food.position = food.GenerateRandomPos(snake.body);
         running = false;
         score = 0;
+        PlaySound(wallSound);
     }
 
     void CheckCollisionWithTail()
